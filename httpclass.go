@@ -14,6 +14,28 @@ const (
 	ServerError
 )
 
+// IsError checks if class is an error
+func (sc StatusClass) IsError() bool {
+	return sc == ClientError || sc == ServerError
+}
+
+func (sc StatusClass) String() string {
+	switch sc {
+	default:
+		return ""
+	case Informational:
+		return "Informational"
+	case Success:
+		return "Success"
+	case Redirection:
+		return "Redirection"
+	case ClientError:
+		return "ClientError"
+	case ServerError:
+		return "ServerError"
+	}
+}
+
 // Get returns the class of given http status code
 func Get(code int) (StatusClass, error) {
 	if code < 100 || code >= 600 {

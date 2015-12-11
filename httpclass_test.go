@@ -66,3 +66,14 @@ func TestServerError(t *testing.T) {
 	}
 	checkCodes(codes, ServerError, false, t)
 }
+
+func TestIsError(t *testing.T) {
+	cs := []StatusClass{Informational, Success, Redirection, ClientError, ServerError}
+	exp := []bool{false, false, false, true, true}
+
+	for i, c := range cs {
+		if c.IsError() != exp[i] {
+			t.Errorf("Error class of %q must be %t but got %t", c, c.IsError(), exp[i])
+		}
+	}
+}
