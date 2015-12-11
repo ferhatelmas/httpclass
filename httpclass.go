@@ -19,6 +19,7 @@ func (sc StatusClass) IsError() bool {
 	return sc == ClientError || sc == ServerError
 }
 
+// String is stringer implementation
 func (sc StatusClass) String() string {
 	switch sc {
 	default:
